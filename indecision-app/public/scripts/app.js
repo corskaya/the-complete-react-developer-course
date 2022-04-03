@@ -1,15 +1,14 @@
-console.log('App.js is running!')
+'use strict';
+
+console.log('App.js is running!');
 
 // JSX - JavaScript XML (Provided via React)
-
-// var template = <p>This is JSX from app.js</p> 
-
-var template = /*#__PURE__*/React.createElement(
-  "p",
+var template = React.createElement(
+  'h1',
   null,
-  "This is JSX from app.js"
-); // babel compiled
+  'Indecision App'
+);
 
-var appRoot = document.getElementById('app')
+var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot)
+ReactDOM.render(template, appRoot);
