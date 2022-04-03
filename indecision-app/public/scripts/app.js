@@ -7,11 +7,6 @@ var app = {
   subtitle: 'Put your life in the hands of a computer',
   options: ['One', 'Two']
 
-  // Challenge
-  //
-  // Only render the subtitle if subtitle exist - logical and operator
-  // render new p tag - if options.length > 0 'Here are your options' 'No options'
-
   // JSX - JavaScript XML
 };var template = React.createElement(
   'div',
