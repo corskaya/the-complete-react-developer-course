@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
@@ -24,6 +24,20 @@ const NoteApp = () => {
     setNotes(notes.filter(note => note.title !== title))
   }
 
+  // runs only once at the beginning
+  useEffect(() => {
+    const notesData = JSON.parse(localStorage.getItem('notes'))
+
+    if (notesData) {
+      setNotes(notesData)
+    }
+  }, [])
+
+  // runs at the beginning and when notes change
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes))
+  }, [notes])
+
   return (
     <div>
       <h1>Notes</h1>
@@ -44,11 +58,38 @@ const NoteApp = () => {
   )
 }
 
+// const App = props => {
+//   const [count, setCount] = useState(props.count)
+//   const [text, setText] = useState('')
+
+//   useEffect(() => {
+//     console.log('componentDidUpdate')
+//   })
+
+//   useEffect(() => {
+//     console.log('componentDidMount')
+//   }, [])
+
+//   useEffect(() => {
+//     console.log('this runs when count changes')
+//   }, [count])
+
+//   return (
+//     <div>
+//       <p>The current {text || 'count'} is {count}</p>
+//       <button onClick={() => setCount(count + 1)}>+1</button>
+//       <button onClick={() => setCount(count - 1)}>-1</button>
+//       <button onClick={() => setCount(props.count)}>reset</button>
+//       <input value={text} onChange={e => setText(e.target.value)} />
+//     </div>
+//   )
+// }
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <NoteApp />
-  </React.StrictMode>
+  //  <React.StrictMode>
+  <NoteApp />
+  //  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
